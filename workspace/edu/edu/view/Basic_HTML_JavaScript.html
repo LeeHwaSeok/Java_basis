@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- 
+	작성자 : 이동준
+	날자 : 2022-05-30 
+	내용 : HTML 기초 강의
+ -->
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>HTML 및 JavaScript 교육</title>
+		<style>
+			.test_class{
+				border : 1px solid red; background-color:blue; width : 100px; height : 100px;	
+			}
+			#test_id{
+				width: 500px; height:500px;
+			}
+		</style>
+	</head>
+	
+	<body>
+	
+		<div style = "border : 1px solid red; background-color:red; width : 100px; height : 100px;"> 
+			test1 class	
+		</div>
+		
+		<div class = "test_class">
+			test2 class
+		</div>
+		
+		<div class = "test_class">
+			test3 class
+		</div>
+		
+		<div class = "test_class">
+			test4 class
+		</div>
+		
+		<div class = "test_class">
+			test5 class
+		</div>
+		
+		<div class = "test_class" id = "test_id">
+			test6 class
+		</div>
+		
+	</body>
+	<script>
+		var data = 1;
+		var data2 = 3;
+		console.log("data + data2 : ", data+data2)
+
+		test_function (data, data2);
+		
+		function test_function (data, data2){
+			console.log("test_function - data + data2 : ", data+data2)
+
+			
+		}
+	</script>
+</html>
+
+<!-- 자바 파이썬 C#과 달리 html은 인터프리터 언어이며 특별한 툴이 필요하지 않음 
+	자바는 변수지정할 때 var로 지정합니다.
+	
+	console 확인법 => f12 -> console
+	
+	
+-->
+
