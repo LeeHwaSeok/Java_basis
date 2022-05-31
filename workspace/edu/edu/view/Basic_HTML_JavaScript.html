@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <!-- 
-	�ۼ��� : �̵���
-	���� : 2022-05-30 
-	���� : HTML ���� ����
+	작성자 : 이동준
+	날자 : 2022-05-30 ~ 2022-05-31
+	내용 : HTML 기초 강의
  -->
 <html>
 	<head>
 		<meta charset="EUC-KR">
-		<title>HTML �� JavaScript ����</title>
+		<title>HTML 및 JavaScript 교육</title>
 		<style>
 			.test_class{
-				border : 1px solid red; background-color:blue; width : 100px; height : 100px;	
+				border : 1px solid red; 
+				background-color:blue; 
+				width : 100px; 
+				height : 100px;	
 			}
 			#test_id{
-				width: 500px; height:500px;
+				width: 500px; 
+				height:500px;
+			}
+			div{
+				background-color : green/*!important*/;
 			}
 		</style>
 	</head>
-	
+	<!-- '#'id -> 1순위, '.'class - 2순위, div -> 3순위 / !important -- 최 우선순위 -->
 	<body>
-	
-		<div style = "border : 1px solid red; background-color:red; width : 100px; height : 100px;"> 
+		<!-- 마우스를 올렸을 때, 발생하는 이벤트 -->
+		<div 
+		onmouseover="console.log('OnMouseOver'); test_mouseover();" 
+		onmouseleave = "test_mouseleave();" 
+		style = "border : 1px solid red; 
+		background-color:red; 
+		width : 100px; 
+		height : 100px;"> 
 			test1 class	
 		</div>
 		
@@ -28,19 +41,24 @@
 			test2 class
 		</div>
 		
-		<div class = "test_class">
+		<div 
+		class = "test_class" 
+		id = "test_id1">
 			test3 class
 		</div>
 		
-		<div class = "test_class">
+		<div 
+		class = "test_class">
 			test4 class
 		</div>
 		
-		<div class = "test_class">
+		<div 
+		class = "test_class">
 			test5 class
 		</div>
-		
-		<div class = "test_class" id = "test_id">
+			
+		<div 
+		class = "test_class" id = "test_id">
 			test6 class
 		</div>
 		
@@ -48,23 +66,95 @@
 	<script>
 		var data = 1;
 		var data2 = 3;
-		console.log("data + data2 : ", data+data2)
+		console.log("data + data2 : ", data+data2);
+		
+		var json ={
+				a:1,
+				b:2,
+				c:'문자',
+				arr : [1,2,3],
+				dic : { 
+					arr: [1,2.3,5,'5']
+				}
+		};
+		/*자바의 변수선언*/
+		var object ={};
+		var arr =[];
+		var integer = 1;
+		var double_and_float = 1.1;
+		var boolean_type = true;
+		var function_type = function test_function(pa1,pa2){
+			console.log("function_type : ",pa1,pa2)
+		}
+		function_type(1, [1,2,3])
+		
+		//arr for문
+		for (var i=0; i<arr.length; i++){
+			console.log("index" + i + ", value : " + arr[i]);
+		}
+		
+		//object for문
+		for ( var key in json){
+			console.log("key : ", key, "value : ", json[key]);
+		}
+		
+		//object value값 꺼내기
+		console.log("json.a : ", json.a);
+		console.log("json['a']: ", json['a']);
 
-		test_function (data, data2);
+		console.log("JSON.stringify(json)에 Key Value 추가 전 : ", JSON.stringify(json));
+		console.log("json에 key value 추가 전 : ", json);
+
+
+		//object key value 추가
+		json.d = 1;
+		json['e'] = 'E';
+		console.log("JSON.stringify(json)에 Key Value 추가 후 : ", JSON.stringify(json));
+		console.log("json에 key value 추가 후 : ", json);
+
+		// json = 데이터가 특정 메모리를 차지하고 있다. 둘다 동일하게 메모리에서 불러오기 때문에 값이 동일하다. = 그래서 최종 업데이트 된 값이 동일하게 출력해준 것
+		// JSON.stringify() = json data를 문자열로 바꿔줌 -> 업데이트 전, 후 차이를 문자열로 저장이 되어있기 때문에 다른값이 출력됨.
+		
+		var retunr_value = test_function (data, data2);
+		console.log("Return_value", retunr_value);
 		
 		function test_function (data, data2){
-			console.log("test_function - data + data2 : ", data+data2)
-
+			console.log("test_function - data + data2 : ", data+data2);
+			return 0;
+		}
+		function test_mouseover (){
+			console.log("test_mouseover")
+			document.getElementsByClassName("test_class")[0].style.width = "50px";
+			document.getElementById("test_id1").style.width = "10px";
+			document.getElementById("test_id1").style.backgroundColor = "#9EBEC4";
+		}
+		function test_mouseleave(){
+			document.getElementsByClassName("test_class")[0].style.width = "100px";
+			document.getElementById("test_id1").style.width = "200px";
+			document.getElementById("test_id1").style.backgroundColor = "red";
 			
 		}
+/*script에서 
+ 변수는 var[데이터 형식 지정필요 없음] --> python 형식
+ 함수는 function [ 리턴타입 없음, 필요시 리턴사용] --> python 형식
+ 출력은 console.log [print와 맞대응]
+ 	확인 방법 console 확인법 => f12 -> console
+ 	
+ 	
+ 도큐먼트 			document.getElementsByClassName("test_class")[0].style.width = "500px";
+ 해석 - 
+	 document -> 사용하기 위한 함수
+	 getElementsByClassName -> body의 클래스명과 동일할경우 .이하 적용
+	 단, 배열의 경우 몇번재인지 체크해야함
+	 getElementById -> body의 id와 동일한경우 상동
+
+ */
+
 	</script>
 </html>
 
-<!-- �ڹ� ���̽� C#�� �޸� html�� ���������� ����̸� Ư���� ���� �ʿ����� ���� 
-	�ڹٴ� ���������� �� var�� �����մϴ�.
-	
-	console Ȯ�ι� => f12 -> console
-	
-	
+<!-- 자바 파이썬 C#과 달리 html은 인터프리터 언어이며 특별한 툴이 필요하지 않음 
+	자바는 변수지정할 때 var로 지정합니다.
+		
 -->
 
